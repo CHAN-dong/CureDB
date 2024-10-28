@@ -23,67 +23,8 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-//        System.out.println("____________________________test____________________________");
-//        oneTest("CA_test.txt");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("____________________________2W____________________________");
-//        oneTest("2w_CA_new.txt");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("____________________________4W____________________________");
-//        oneTest("4w_CA_new.txt");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("____________________________6W____________________________");
-//        oneTest("6w_CA_new.txt");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("____________________________8W____________________________");
-//        oneTest("8w_CA_new.txt");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("***************************************************************");
-//        System.out.println("____________________________10W____________________________");
-//        oneTest("10w_CA_new.txt");
-
-
-
-
-
-
-
         System.out.println("____________________________test____________________________");
-        oneTest("Uniform_test.txt");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("____________________________2W____________________________");
-        oneTest("Uniform_2w.txt");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("____________________________4W____________________________");
-        oneTest("Uniform_4w.txt");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("____________________________6W____________________________");
-        oneTest("Uniform_6w.txt");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("____________________________8W____________________________");
-        oneTest("Uniform_8w.txt");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("***************************************************************");
-        System.out.println("____________________________10W____________________________");
-        oneTest("Uniform_10w.txt");
+        oneTest("test.txt");
     }
     public static void OneQuery(DataOwner dataOwner, Server server, double rangePer, int keywordsNum, int n) {
         Experiment expData = new Experiment();
@@ -168,8 +109,8 @@ public class Main {
     public static void oneTest(String dataSetPath) throws Exception
     {
         long s, e;
-        String dataPath = "D:\\mycode\\mywork\\dataset\\SBQF\\" + dataSetPath;
-//        String dataPath = "./src/test1.txt";
+//        String dataPath = "/usr/dong/dataset/" + dataSetPath;
+        String dataPath = "./src/" + dataSetPath;
 
         s = System.nanoTime();
         DataOwner dataOwner = new DataOwner(dataPath, 128);
@@ -184,26 +125,26 @@ public class Main {
         //update
 //        HashMap<String, SigObj> updData = dataOwner.update(1, 1, 0, 1);
 //        server.update(updData);
-        System.out.println(dataOwner.getRangeBitSize() + "---rangeBitSize");
-        oneUpdate(dataOwner, server, 100);
+//        System.out.println(dataOwner.getRangeBitSize() + "---rangeBitSize");
+//        oneUpdate(dataOwner, server, 100);
 
 
 
-//        System.out.println("-----------------------range effect-----------------------");
-//        for (double per = 0.02; per <= 0.1; per += 0.02) {
-//            System.out.println("********" + per + "," + 2 + "********");
-//            OneQuery(dataOwner, server, per, 2, 20);
-//        }
-//        System.out.println("-----------------------keywords effect-----------------------");
-//        for (int keyword = 1; keyword <= 5; ++keyword) {
-//            System.out.println("********" + 0.02 + "," + keyword + "********");
-//            OneQuery(dataOwner, server, 0.02, keyword, 20);
-//        }
-//
-//        dataOwner = null;
-//        System.gc();
-//        Thread.sleep(1000);
-//        server.getIndexSize();
+        System.out.println("-----------------------range effect-----------------------");
+        for (double per = 0.02; per <= 0.1; per += 0.02) {
+            System.out.println("********" + per + "," + 2 + "********");
+            OneQuery(dataOwner, server, per, 2, 20);
+        }
+        System.out.println("-----------------------keywords effect-----------------------");
+        for (int keyword = 1; keyword <= 5; ++keyword) {
+            System.out.println("********" + 0.02 + "," + keyword + "********");
+            OneQuery(dataOwner, server, 0.02, keyword, 20);
+        }
+
+        dataOwner = null;
+        System.gc();
+        Thread.sleep(1000);
+        server.getIndexSize();
     }
 
 }
